@@ -32,6 +32,13 @@ class Student:
         else:
             print(f"{self.name} is not in {class_to_leave.name}")
 
+    def attend_class(self, class_to_attend):
+        if class_to_attend in self.classes:
+            self.attendance += 1
+            print(f"{self.name} has attended {class_to_attend.name}")
+        else:
+            print(f"{self.name} is not in {class_to_attend.name}")
+
 
 # a student can get grades
 # a student can loose grades
