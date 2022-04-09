@@ -1,7 +1,5 @@
 class Student:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+    def __init__(self):
         self.grade = 0
         self.attendance = 0
         self.is_passed = True if self.grade >= 55 else False
@@ -13,7 +11,19 @@ class Student:
             "class" if len(self.classes) == 1 else "classes"
         )  # if there is only one class, use "class"
 
-        return f"{self.name} is {self.age} years old and is in grade {self.grade}. He has {self.attendance} attendance and is in {self.classes} {single_plural}."
+        return f"{self.name} is {self.age} years old and is in grade {self.grade}. He has {self.attendance} attendance and is in {len(self.classes)} {single_plural}."
+
+    # add a student
+    def add_student(self):
+        name, age = input(
+            "Enter student name and age (please split your answers with spaces): "
+        ).split()
+        self.name = name
+        self.age = int(age)
+
+        print(f"{self.name} who is {self.age} years old has been added to the school")
+
+        return self
 
     # a student can take a class
     def take_class(self, class_to_take):
@@ -70,6 +80,13 @@ class Student:
             )
 
 
+print("====================================")
+print("Welcome to the High School Simulator")
+print("====================================")
+
+student_one = Student().add_student()
+
+print(student_one)
 # a student can get grades
 # a student can loose grades
 # a student can get attendance
