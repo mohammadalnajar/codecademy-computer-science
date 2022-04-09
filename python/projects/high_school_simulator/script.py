@@ -4,8 +4,9 @@ class Student:
         self.age = age
         self.grade = 0
         self.attendance = 0
-        self.classes = []
         self.is_passed = True if self.grade >= 55 else False
+        self.classes = []
+        self.assignments = []
 
     def __repr__(self):
         single_plural = (
@@ -39,6 +40,36 @@ class Student:
         else:
             print(f"{self.name} is not in {class_to_attend.name}")
 
+    # a student can submit a assignment
+    def submit_assignment(self, assignment_to_submit, grade, min_grade_to_pass):
+        if assignment_to_submit not in self.assignments:
+            assignment = {}
+            assignment["assignment"] = assignment_to_submit
+            assignment["grade"] = grade
+            assignment["min_grade_to_pass"] = min_grade_to_pass
+            assignment_to_submit.add_student(self)  # add student to assignment
+
+            print(f"{self.name} has submitted {assignment_to_submit.name} assignment")
+
+            if grade >= min_grade_to_pass:
+                self.grade += grade
+                assignment["is_passed"] = True
+                self.assignments.append(assignment)
+                print(
+                    f"{self.name} has passed the {assignment_to_submit.name} assignment with {grade} points"
+                )
+            else:
+                self.grade += grade
+                assignment["is_passed"] = False
+                self.assignments.append(assignment)
+                print(
+                    f"{self.name} has failed the {assignment_to_submit.name} assignment with {grade} points"
+                )
+        else:
+            print(
+                f"{self.name} has already submitted this {assignment_to_submit.name} assignment"
+            )
+
 
 # a student can get grades
 # a student can loose grades
@@ -55,3 +86,9 @@ class Student:
 # a class has a list of assignments
 # a class can add an assignment
 # a class can remove an assignment
+
+
+# an assignment has a name
+# an assignment has a min grade to pass
+# an assignment has a teacher
+# an assignment has a list of students
