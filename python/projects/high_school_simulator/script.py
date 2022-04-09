@@ -94,9 +94,7 @@ class Class:
             "Enter a new class name and max students number (please split your answers with spaces): "
         ).split()
 
-        error = {"msg": "test"}
-        print(type(name))
-        print(type(max_students))
+        error = {}
 
         while True:
             try:
@@ -124,6 +122,14 @@ class Class:
 
         return self
 
+    # a class can add a student
+    def add_student(self, student_to_add):
+        if student_to_add not in self.students:
+            self.students.append(student_to_add)
+            print(f"{student_to_add.name} has been added to {self.name}")
+        else:
+            print(f"{student_to_add.name} is already in {self.name}")
+
 
 print("====================================")
 print("Welcome to the High School Simulator")
@@ -135,7 +141,7 @@ student_one = Student().add_student()
 print(student_one)
 
 print("1" == 1)
-# a class can add a student
+
 # a class can remove a student
 # a class has a name
 # a class has a mandatory attendance
