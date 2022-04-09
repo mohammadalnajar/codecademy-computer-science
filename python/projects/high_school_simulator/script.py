@@ -80,18 +80,61 @@ class Student:
             )
 
 
+class Class:
+    def __init__(self):
+        self.teacher = None
+        self.students = []
+
+    def __repr__(self):
+        print(f"{self.name} has {len(self.students)} students")
+
+    # add a class
+    def add_class(self):
+        name, max_students = input(
+            "Enter a new class name and max students number (please split your answers with spaces): "
+        ).split()
+
+        error = {"msg": "test"}
+        print(type(name))
+        print(type(max_students))
+
+        while True:
+            try:
+                if not max_students.isnumeric():
+                    error["msg"] = "Max students number must be an integer"
+                    raise ValueError
+
+                max_students = int(max_students)
+                if max_students < 1:
+                    error["msg"] = "Max students number must be greater than 0"
+                    raise ValueError
+                if name.isnumeric():
+                    error["msg"] = "Class name must be only letters"
+                    raise ValueError
+                break
+            except ValueError:
+                msg = error["msg"] if "msg" in error else "Invalid input"
+                print(f"Error: {msg}")
+                name, max_students = input(
+                    "Enter a new class name and max students number (please split your answers with spaces): "
+                ).split()
+
+        self.name = name
+        print(f"{self.name} class has been added to the school")
+
+        return self
+
+
 print("====================================")
 print("Welcome to the High School Simulator")
 print("====================================")
 
+class_one = Class().add_class()
 student_one = Student().add_student()
 
 print(student_one)
-# a student can get grades
-# a student can loose grades
-# a student can get attendance
 
-
+print("1" == 1)
 # a class can add a student
 # a class can remove a student
 # a class has a name
