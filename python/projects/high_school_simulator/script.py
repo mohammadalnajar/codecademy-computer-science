@@ -41,17 +41,16 @@ class Student:
             print(f"{self.name} is not in {class_to_attend.name}")
 
     # a student can submit a assignment
-    def submit_assignment(self, assignment_to_submit, grade, min_grade_to_pass):
+    def submit_assignment(self, assignment_to_submit, grade):
         if assignment_to_submit not in self.assignments:
             assignment = {}
             assignment["assignment"] = assignment_to_submit
             assignment["grade"] = grade
-            assignment["min_grade_to_pass"] = min_grade_to_pass
             assignment_to_submit.add_student(self)  # add student to assignment
 
             print(f"{self.name} has submitted {assignment_to_submit.name} assignment")
 
-            if grade >= min_grade_to_pass:
+            if grade >= assignment_to_submit.min_grade_to_pass:
                 self.grade += grade
                 assignment["is_passed"] = True
                 self.assignments.append(assignment)
