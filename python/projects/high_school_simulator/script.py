@@ -90,8 +90,8 @@ class Class:
 
     # add a class
     def add_class(self):
-        name, max_students = input(
-            "Enter a new class name and max students number (please split your answers with spaces): "
+        name, max_students, min_attendance = input(
+            "Enter a new class name and max students number and minimal attendance (please split your answers with spaces): "
         ).split()
 
         error = {}
@@ -100,6 +100,9 @@ class Class:
             try:
                 if not max_students.isnumeric():
                     error["msg"] = "Max students number must be an integer"
+                    raise ValueError
+                if not min_attendance.isnumeric():
+                    error["msg"] = "Min attendance number must be an integer"
                     raise ValueError
 
                 max_students = int(max_students)
@@ -150,8 +153,7 @@ print(student_one)
 
 print("1" == 1)
 
-# a class can remove a student
-# a class has a name
+
 # a class has a mandatory attendance
 # a class has a min grade to pass
 # a class has a teacher
