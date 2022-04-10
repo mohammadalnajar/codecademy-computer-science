@@ -126,9 +126,17 @@ class Class:
     def add_student(self, student_to_add):
         if student_to_add not in self.students:
             self.students.append(student_to_add)
-            print(f"{student_to_add.name} has been added to {self.name}")
+            print(f"{student_to_add.name} has been added to {self.name} class")
         else:
-            print(f"{student_to_add.name} is already in {self.name}")
+            print(f"{student_to_add.name} is already in {self.name} class")
+
+    # a class can remove a student
+    def remove_student(self, student_to_remove):
+        if student_to_remove in self.students:
+            self.students.remove(student_to_remove)
+            print(f"{student_to_remove.name} has been removed from {self.name} class")
+        else:
+            print(f"{student_to_remove.name} is not in {self.name} class")
 
 
 print("====================================")
@@ -137,7 +145,7 @@ print("====================================")
 
 class_one = Class().add_class()
 student_one = Student().add_student()
-
+class_one.add_student(student_one)
 print(student_one)
 
 print("1" == 1)
