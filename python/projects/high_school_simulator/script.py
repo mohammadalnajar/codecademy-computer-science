@@ -141,6 +141,22 @@ class Class:
         else:
             print(f"{student_to_remove.name} is not in {self.name} class")
 
+    # a class set a teacher
+    def set_teacher(self, teacher):
+        if self.teacher is None:
+            self.teacher = teacher
+            print(f"{self.name} class will be taught by {self.teacher.name}")
+        else:
+            print(f"{self.name} class has already been taught by {self.teacher.name}")
+
+    # remove a teacher from a class
+    def remove_teacher(self):
+        if self.teacher is not None:
+            self.teacher = None
+            print(f"{self.name} class will no longer be taught by {self.teacher.name}")
+        else:
+            print(f"{self.name} class has no teacher")
+
 
 print("====================================")
 print("Welcome to the High School Simulator")
@@ -148,15 +164,12 @@ print("====================================")
 
 class_one = Class().add_class()
 student_one = Student().add_student()
-class_one.add_student(student_one)
+student_one.take_class(class_one)
 print(student_one)
 
 print("1" == 1)
 
 
-# a class has a mandatory attendance
-# a class has a min grade to pass
-# a class has a teacher
 # a class has a list of students
 # a class has a list of assignments
 # a class can add an assignment
