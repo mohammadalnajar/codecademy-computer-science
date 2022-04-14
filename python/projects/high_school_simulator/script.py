@@ -194,6 +194,8 @@ class Assignment:
         self.min_grade_to_pass = min_grade_to_pass
         print(f"{self.name} assignment has been added to the school")
 
+        return self
+
     def add_student(self, student_to_add):
         if student_to_add not in self.students:
             self.students.append(student_to_add)
@@ -220,11 +222,3 @@ print("====================================")
 class_one = Class().add_class()
 student_one = Student().add_student()
 student_one.take_class(class_one)
-print(student_one)
-
-print("1" == 1)
-
-
-# a teacher has a name
-# a teacher has an age
-# a teacher has a class
