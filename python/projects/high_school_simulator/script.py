@@ -116,11 +116,13 @@ class Class:
             except ValueError:
                 msg = error["msg"] if "msg" in error else "Invalid input"
                 print(f"Error: {msg}")
-                name, max_students = input(
-                    "Enter a new class name and max students number (please split your answers with spaces): "
+                name, max_students, min_attendance = input(
+                    "Enter a new class name and max students number and minimal attendance (please split your answers with spaces): "
                 ).split()
 
         self.name = name
+        self.max_students = max_students
+        self.min_attendance = min_attendance
         print(f"{self.name} class has been added to the school")
 
         return self
@@ -158,6 +160,59 @@ class Class:
             print(f"{self.name} class has no teacher")
 
 
+class Assignment:
+    def __init__(self):
+        self.students = []
+
+    def __repr__(self):
+        print(f"{self.name} has {len(self.students)} students")
+
+    def add_assignment(self):
+
+        name, min_grade_to_pass = input(
+            "Enter assignment's name and a minimal grade to pass (use spaces between inputs):  "
+        ).split()
+
+        error = {}
+        while True:
+            try:
+                if not min_grade_to_pass.isnumeric():
+                    error["msg"] = "Min grade to pass must be an integer"
+                    raise ValueError
+                if name.isnumeric():
+                    error["msg"] = "Assignment name must be only letters"
+                    raise ValueError
+                break
+            except ValueError:
+                msg = error["msg"] if "msg" in error else "Invalid input"
+                print(f"Error: {msg}")
+                name, min_grade_to_pass = input(
+                    "Enter assignment's name and a minimal grade to pass (use spaces between inputs):  "
+                ).split()
+
+        self.name = name
+        self.min_grade_to_pass = min_grade_to_pass
+        print(f"{self.name} assignment has been added to the school")
+
+    def add_student(self, student_to_add):
+        if student_to_add not in self.students:
+            self.students.append(student_to_add)
+            print(f"{student_to_add.name} has been added to {self.name} assignment")
+        else:
+            print(f"{student_to_add.name} is already in {self.name} assignment")
+
+    def remove_student(self, student_to_remove):
+        if student_to_remove in self.students:
+            self.students.remove(student_to_remove)
+            print(
+                f"{student_to_remove.name} has been removed from {self.name} assignment"
+            )
+        else:
+            print(f"{student_to_remove.name} is not in {self.name} assignment")
+
+    # an assignment has a list of students
+
+
 print("====================================")
 print("Welcome to the High School Simulator")
 print("====================================")
@@ -170,13 +225,6 @@ print(student_one)
 print("1" == 1)
 
 
-# a class has a list of students
-# a class has a list of assignments
-# a class can add an assignment
-# a class can remove an assignment
-
-
-# an assignment has a name
-# an assignment has a min grade to pass
-# an assignment has a teacher
-# an assignment has a list of students
+# a teacher has a name
+# a teacher has an age
+# a teacher has a class
