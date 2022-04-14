@@ -15,9 +15,40 @@ class Student:
 
     # add a student
     def add_student(self):
-        name, age = input(
-            "Enter student name and age (please split your answers with spaces): "
-        ).split()
+        error = {}
+        while True:
+            try:
+                name, age = input(
+                    "Enter student name and age (please split your answers with spaces): "
+                ).split()
+                break
+            except ValueError:
+                print("Please enter all the required fields")
+                name, age = input(
+                    "Enter student name and age (please split your answers with spaces): "
+                ).split()
+
+        while True:
+            try:
+                if not age.isnumeric():
+                    error["msg"] = "Max students number must be an integer"
+                    raise ValueError
+
+                age = int(age)
+                if age < 7:
+                    error["msg"] = "Students must be at least 7 years old"
+                    raise ValueError
+                if name.isnumeric():
+                    error["msg"] = "Student name must be only letters"
+                    raise ValueError
+                break
+            except ValueError:
+                msg = error["msg"] if "msg" in error else "Invalid input"
+                print(f"Error: {msg}")
+                name, age = input(
+                    "Enter student name and age (please split your answers with spaces): "
+                ).split()
+
         self.name = name
         self.age = int(age)
 
@@ -90,14 +121,28 @@ class Class:
 
     # add a class
     def add_class(self):
-        name, max_students, min_attendance = input(
-            "Enter a new class name and max students number and minimal attendance (please split your answers with spaces): "
-        ).split()
-
         error = {}
 
         while True:
             try:
+                name, max_students, min_attendance = input(
+                    "Enter a new class name and max students number and minimal attendance (please split your answers with spaces): "
+                ).split()
+                break
+            except ValueError:
+
+                print(
+                    "************** Please enter all the required fields **************"
+                )
+                name, max_students, min_attendance = input(
+                    "Enter a new class name and max students number and minimal attendance (please split your answers with spaces): "
+                ).split()
+
+        while True:
+            try:
+                if name is None or max_students is None or min_attendance is None:
+                    error["msg"] = "Please enter all the required fields"
+                    raise ValueError
                 if not max_students.isnumeric():
                     error["msg"] = "Max students number must be an integer"
                     raise ValueError
@@ -215,10 +260,74 @@ class Assignment:
     # an assignment has a list of students
 
 
-print("====================================")
-print("Welcome to the High School Simulator")
-print("====================================")
+def run_app():
+    print("====================================")
+    print("Welcome to the High School Simulator")
+    print("====================================")
 
-class_one = Class().add_class()
-student_one = Student().add_student()
-student_one.take_class(class_one)
+    classes = []
+
+    class_one = Class().add_class()
+    classes.append(class_one)
+    print("====================================")
+    print("lets add one more class")
+    print("====================================")
+    class_two = Class().add_class()
+    classes.append(class_two)
+    print("====================================")
+    print("lets get some students joining our school")
+    print("====================================")
+    student_one = Student().add_student()
+    print("====================================")
+    print("lets add one more student")
+    print("====================================")
+    student_two = Student().add_student()
+    print("====================================")
+    print("lets add one more student")
+    print("====================================")
+    student_three = Student().add_student()
+    print("====================================")
+    print("lets add one more student")
+    print("====================================")
+    student_four = Student().add_student()
+
+    classes_names = ""
+    for idx in range(len(classes)):
+        classes_length = len(classes)
+
+        classes_names += f"{classes[idx].name} "
+        if idx < classes_length - 1:
+            classes_names += " OR "
+
+    class_student_one_will_take = input(
+        f"Enter a class name that student one will take: {classes_names}"
+    ).strip()
+
+    while True:
+        try:
+            if class_student_one_will_take == class_one.name:
+                student_one.take_class(class_one)
+                break
+            elif class_student_one_will_take == class_two.name:
+                student_one.take_class(class_two)
+                break
+            else:
+                raise SyntaxError
+        except SyntaxError:
+            print("====================================")
+            print(f"{class_student_one_will_take} is not an existed class")
+            class_student_one_will_take = input(
+                f"Enter a class name that student one will take: {classes_names}"
+            )
+
+
+run_app()
+
+
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# for idx in range(len(numbers)):
+#     print(idx)
+#     list_length = len(numbers)
+#     if idx < list_length - 1:
+#         print(list_length, "=====")
