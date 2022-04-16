@@ -97,3 +97,45 @@ print(x_length_words("i like apples", 2))
 # should print False
 print(x_length_words("he likes apples", 2))
 # should print True
+
+
+print(
+    "=====================================ADVANCED====================================="
+)
+
+# 1. Check Name
+print("1. Check Name =====================================================")
+
+
+def check_for_name(sentence, name):
+    return name.lower() in sentence.lower()
+
+
+# Uncomment these function calls to test your  function:
+print(check_for_name("My name is Jamie", "Jamie"))
+# should print True
+print(check_for_name("My name is jamie", "Jamie"))
+# should print True
+print(check_for_name("My name is Samantha", "Jamie"))
+# should print False
+
+# 2. Every Other Letter
+print("2. Every Other Letter =====================================================")
+
+
+# Write your every_other_letter function here:
+def every_other_letter(word):
+    new_word = ""
+    for idx in range(len(word)):
+        if idx % 2 == 0:
+            new_word += word[idx]
+    return new_word
+
+
+# Uncomment these function calls to test your function:
+print(every_other_letter("Codecademy"))
+# should print Cdcdm
+print(every_other_letter("Hello world!"))
+# should print Hlowrd
+print(every_other_letter(""))
+# should print
