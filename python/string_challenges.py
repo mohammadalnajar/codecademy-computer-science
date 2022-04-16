@@ -139,3 +139,59 @@ print(every_other_letter("Hello world!"))
 # should print Hlowrd
 print(every_other_letter(""))
 # should print
+
+
+# 3. Reverse
+print("3. Reverse =====================================================")
+
+# Write your reverse_string function here:
+def reverse_string(word):
+    return word[::-1]
+
+
+# Uncomment these function calls to test your  function:
+print(reverse_string("Codecademy"))
+# should print ymedacedoC
+print(reverse_string("Hello world!"))
+# should print !dlrow olleH
+print(reverse_string(""))
+# should print
+
+
+# 4. Make Spoonerism
+print("4. Make Spoonerism =====================================================")
+
+# Write your make_spoonerism function here:
+def make_spoonerism(word_1, word_2):
+    return word_2[0] + word_1[1:] + " " + word_1[0] + word_2[1:]
+
+
+# Uncomment these function calls to test your function:
+print(make_spoonerism("Codecademy", "Learn"))
+# should print Lodecademy Cearn
+print(make_spoonerism("Hello", "world!"))
+# should print wello Horld!
+print(make_spoonerism("a", "b"))
+# should print b a
+
+
+# 5. Add Exclamation
+print("5. Add Exclamation =====================================================")
+
+# Write your add_exclamation function here:
+def add_exclamation(sentence):
+    if len(sentence) <= 20:
+        rest = 20 - len(sentence)
+        for idx in range(rest):
+            sentence += " "
+        sentence = sentence.replace(" ", "!")
+        return sentence
+    return sentence
+
+
+# Uncomment these function calls to test your function:
+print(add_exclamation("Codecademy"))
+# print(add_exclamation("Co dec ademy"))
+# should print Codecademy!!!!!!!!!!
+print(add_exclamation("Codecademy is the best place to learn"))
+# should print Codecademy is the best place to learn
