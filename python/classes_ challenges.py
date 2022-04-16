@@ -54,3 +54,26 @@ print(count_multi_char_x("mississippi", "iss"))
 # should print 2
 print(count_multi_char_x("apple", "pp"))
 # should print 1
+
+# 4. Substring Between
+print("4. Substring Between =====================================================")
+# Write your substring_between_letters function here:
+def substring_between_letters(word, letter_1, letter_2):
+    idx_1 = word.find(letter_1)
+    idx_2 = word.find(letter_2)
+    if not idx_1 == -1 and not idx_2 == -1:
+        return word[idx_1:idx_2]
+    elif idx_1 == -1 and not idx_2 == -1:
+        return word[:idx_2]
+    elif not idx_1 == -1 and idx_2 == -1:
+        return word[idx_1:]
+    else:
+        return ""
+
+
+# Uncomment these function calls to test your function:
+print(substring_between_letters("apple", "p", "e"))
+# should print "pl"
+print(substring_between_letters("apple", "c", "c"))
+
+# should print "apple"
