@@ -28,7 +28,9 @@ class Linked_list:
         return self.head_node
 
     def insert_beginning(self, new_value):
+
         new_node = Node(new_value)
+        # print(new_node.get_value(), "new_node")
         new_node.set_next(self.head_node)
         self.head_node = new_node
 
@@ -36,8 +38,7 @@ class Linked_list:
         string_list = ""
         current_node = self.get_head_node()
         while current_node:
-            if current_node.get_value() != None:
-
+            if current_node.get_value() != "None":
                 string_list += str(current_node.get_value()) + "\n"
             current_node = current_node.get_next()
         return string_list
@@ -80,27 +81,54 @@ class Linked_list:
 
         return found_node
 
+    def generate_test_linked_list():
+        linked_list = Linked_list()
+        for i in range(1, 51):
+            linked_list.insert_beginning(i)
+        return linked_list
 
-list = Linked_list(1)
 
-list.insert_beginning(2)
-list.insert_beginning(3)
-list.insert_beginning(4)
-list.insert_beginning(5)
+def nth_last_node(linked_list, n):
+    return linked_list.find_node(linked_list.get_list_length() - n)
 
-print(list.stringify_list())
-list.reverse_list()
-print(list.stringify_list())
 
-print(list.get_list_length())
+# list = Linked_list(1)
 
-print(list.find_node(list.get_list_length() - 2).get_value())
+# list.insert_beginning(2)
+# list.insert_beginning(3)
+# list.insert_beginning(4)
+# list.insert_beginning(5)
+
+# print(list.stringify_list())
+# list.reverse_list()
+# print(list.stringify_list())
+
+# print(list.get_list_length())
+
+# print(list.find_node(list.get_list_length() - 2).get_value())
 
 
 # Complete this function:
-def nth_last_node(linked_list, n):
-    pass
 
 
-nth_last = nth_last_node(list, 4)
+test_list = Linked_list.generate_test_linked_list()
+
+print(test_list.stringify_list())
+
+
+# test_list.reverse_list()
+# print(test_list.stringify_list())
+
+print("===========")
+
+print(test_list.find_node(48).get_value())
+
+print("==========")
+print("==========")
+print("==========")
+
+print(test_list.get_list_length())
+print("==========")
+nth_last = nth_last_node(test_list, 2)
 print(nth_last.value)
+print("==========")
