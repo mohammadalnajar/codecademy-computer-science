@@ -177,19 +177,19 @@
 
 
 # define wrap_string() here
-def wrap_string(str, n):
+def wrap_string(str, n, openSymbol="<", closeSymbol=">"):
     result = ""
 
     if n <= 0:
         return str
 
-    result += "<"
-    result += wrap_string(str, n - 1)
-    result += ">"
+    result += openSymbol
+    result += wrap_string(str, n - 1, openSymbol, closeSymbol)
+    result += closeSymbol
 
     return result
 
 
 # Test code - do not edit
-wrapped = wrap_string("Pearl", 5)
+wrapped = wrap_string("Mohammad", 5, "!", "!")
 print(wrapped)
