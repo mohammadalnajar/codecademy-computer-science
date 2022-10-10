@@ -151,3 +151,24 @@
 # print(depth(tree_level_4) == 4)
 
 #################################################################
+
+
+def move_to_end(my_list, str):
+
+    result = []
+
+    if len(my_list) == 0:
+        return []
+
+    if my_list[0] == str:
+        result += move_to_end(my_list[1:], str)
+        result.append(my_list[0])
+
+    else:
+        result.append(my_list[0])
+        result += move_to_end(my_list[1:], str)
+
+    return result
+
+
+print(move_to_end(["Amber", "Sapphire", "Amber", "Jade"], "Amber"))
